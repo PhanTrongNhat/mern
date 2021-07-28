@@ -2,6 +2,10 @@
 import mongoose from 'mongoose';
 
 const schema = new mongoose.Schema({
+    id:{
+        type:String,
+        required:true
+    },
     title: {
         type:String,
         required:true
@@ -20,4 +24,4 @@ const schema = new mongoose.Schema({
     }
 },{ timestamps:true});
 
-export const itemModel = mongoose.model('item',schema);
+export const itemModel = mongoose.model('items',schema);

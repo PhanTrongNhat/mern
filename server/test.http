@@ -1,0 +1,23 @@
+POST http://localhost:5000/items
+Content-Type: application/json
+
+{ 
+    "id":"3",
+            "title":"computer",
+            "price":1000,
+           "image" : "a",
+            "pet":"cat"  
+}
+###
+POST http://localhost:5000/items/update
+Content-Type: application/json
+
+{ 
+     "id":"3",
+            "title":"computer",
+            "price":100000,
+           "image" : "a",
+            "pet":"cat"  
+}
+### 
+GET http://localhost:5000/items
