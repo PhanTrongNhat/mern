@@ -3,19 +3,12 @@ import mongoose from 'mongoose';
 
 const schema = new mongoose.Schema({
     id:{
-        type:String,
+        type: Number,
         required:true
     },
-    title: {
-        type:String,
-        required:true
-    },
-    price :{
+    name: {
         type: String,
-        required: true
-    },
-    image:{
-        type:String
+        required:true
     },
     provider:{
         type: String,
@@ -24,4 +17,4 @@ const schema = new mongoose.Schema({
     }
 },{ timestamps:true});
 
-export const itemModel = mongoose.model('items',schema);
+export const categoriModel = mongoose.model('categoris',schema);

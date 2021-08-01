@@ -1,15 +1,18 @@
-POST http://localhost:5000/items
+POST http://localhost:5000/products
 Content-Type: application/json
 
 { 
-    "id":"3",
-            "title":"computer",
-            "price":1000,
-           "image" : "a",
-            "pet":"cat"  
+       
+        "name": "spants",
+        "cost": 19,
+        "image": "https://i.ibb.co/SfXj1F9/spants.png",
+        "favourite": true,
+        "categori": "spants",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+      
 }
 ###
-POST http://localhost:5000/items/update
+POST http://localhost:5000/products/update
 Content-Type: application/json
 
 { 
@@ -20,4 +23,13 @@ Content-Type: application/json
             "pet":"cat"  
 }
 ### 
-GET http://localhost:5000/items
+GET http://localhost:5000/products?page=0&limit=2
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiYyIsImlhdCI6MTYyNzMxNTc2NywiZXhwIjoxNjI3MzE1Nzk3fQ.niqOF26ZX7NVKSAIGrD49WRUr3kPJD7tkACMgO2NuQY
+###
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{   
+            "username":"Nhat",
+            "password": "nhatpro"
+}
