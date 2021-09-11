@@ -1,36 +1,59 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "reactstrap";
+import { Table, Button } from "reactstrap";
 import productApi from "../api/productsApi";
 import Item from "../components/product/table";
-export default function Products() {
+import FormAddProduct from "../components/product/formAddProduct";
+import Pagination from "../components/general/pagination";
+export default function Products(Props) {
   const [products, setProducts] = useState();
   const [isReload, setReload] = useState(false);
-  const reloadPage = ()=>{
-    console.log('reload');
+  const [isAddProduct, setAddProduct] = useState(false);
+  const [pagination, setPaginationconst] = useState({
+    _page: 1,
+   
+    _totalRows: 0,
+  });
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlParams);
+
+  const reloadPage = () => {
+    console.log("reload");
     setReload(!isReload);
-  }
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await productApi.getAll();
-        setProducts(data);
-        console.log(data);
+        let data;
+        if (params) {
+          data = await productApi.getAll(params);
+        } else {
+          data = await productApi.getAll({ _page: 1, _limit: 3 });
+        }
+
+        setProducts(data.data);
+        setPaginationconst({
+          ...pagination,_totalRows:data._totalRows
+        })
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
   }, [isReload]);
+
+  const displayAddProduct = () => {
+    setAddProduct(!isAddProduct);
+  };
   return (
     <div className="screen-home">
-      <form>
-        <label htmlFor="name">Name:</label>
-        <input id="name" type="text"></input>
-        <label htmlFor="cost">Cost:</label>
-        <input id="cost" type="text"></input>
-        <label htmlFor="image">Image:</label>
-        <input id="image" type="text"></input>
-      </form>
+      <Button onClick={displayAddProduct}>Add Product</Button>
+      {isAddProduct ? (
+        <FormAddProduct reloadPage={reloadPage}></FormAddProduct>
+      ) : (
+        ""
+      )}
+
       <Table>
         <thead>
           <tr>
@@ -45,11 +68,19 @@ export default function Products() {
           </tr>
         </thead>
         <tbody>
-          {products?products.map((item,index) => (
-            <Item  key={index} reloadPage={reloadPage} number={index} product={item}></Item>
-          )):""}
+          {products
+            ? products.map((item, index) => (
+                <Item
+                  key={index}
+                  reloadPage={reloadPage}
+                  number={index}
+                  product={item}
+                ></Item>
+              ))
+            : ""}
         </tbody>
       </Table>
+      <Pagination pagination={pagination}   reloadPage={reloadPage} ></Pagination>
     </div>
   );
 }

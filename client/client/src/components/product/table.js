@@ -34,6 +34,7 @@ export default function Table(Props) {
     };
     deleteP();
   };
+  
   return (
     <tr>
       <th scope="row">{number}</th>
@@ -43,6 +44,7 @@ export default function Table(Props) {
         {isEdit ? (
           <input
             type="text"
+            required
             value={name}
             onChange={(e) => changeName(e.target.value)}
           ></input>
@@ -50,12 +52,14 @@ export default function Table(Props) {
           product.name
         )}
       </td>
-      <td>{product.image}</td>
+    
+      <td><img className="products-image" alt="product" src={product.image}/></td>
       <td>
         {isEdit ? (
           <input
             type="text"
             value={cost}
+            required
             onChange={(e) => changeCost(e.target.value)}
           ></input>
         ) : (
