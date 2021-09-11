@@ -1,9 +1,9 @@
 import express from "express";
-import { postInform} from "../controllers/login.controller.js";
+import { postCreate } from "../controllers/create.controller.js";
 var router = express.Router();
 
 // define the home page route
-router.post("/", postInform);
+router.post("/",  postCreate);
 
 
 export default router;

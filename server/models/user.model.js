@@ -10,11 +10,10 @@ const schema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    cart: {
-      total: Number,
-      count: Number,
-      products: Array,
-    },
+    isAdmin: {
+      type: Boolean,
+      default: false
+    }
   },
   { timestamps: true }
 );

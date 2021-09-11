@@ -2,9 +2,11 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
-import bird from './routers/birds.js';
+import createUser from './routers/create.router.js';
 import routerproducts from './routers/products.router.js';
 import routerLogin from './routers/login.js';
+import routerOrder from './routers/order.js'
+import routerAdmin from './routers/admin.router.js'
 const URI ="mongodb+srv://admin:123456hcmus@cluster0.hxmqu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 const app = express();
@@ -12,10 +14,12 @@ const port = process.env.port|| 5000;
 app.use(bodyParser.json({limit : '30mb'}));
 app.use(bodyParser.urlencoded({extended: true,limit : '30mb'}));
 app.use(cors());
-app.use('/bird',bird);
+app.use('/create',createUser);
 app.use('/products',routerproducts);
 app.use('/login',routerLogin);
 app.use('/static',express.static('public'));
+app.use('/order',routerOrder);
+app.use('/admin',routerAdmin);
 app.get('/',(req,res)=>{
  res.send('hello world');
 })
@@ -38,7 +42,7 @@ app.get('/',(req,res)=>{
   
 //     res.jsonp(res.locals.data);
 //   };
-
+import './ws.js'
 mongoose.set('useNewUrlParser', true);
 mongoose.connect(URI,{useNewUrlParser:true,useUnifiedTopology:true, useFindAndModify: false,useCreateIndex: true})
 .then(()=>{

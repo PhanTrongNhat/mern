@@ -4,7 +4,7 @@ Content-Type: application/json
 { 
        
         "name": "spants",
-        "cost": 19,
+        "cost": 20,
         "image": "https://i.ibb.co/SfXj1F9/spants.png",
         "favourite": true,
         "categori": "spants",
@@ -23,7 +23,7 @@ Content-Type: application/json
             "pet":"cat"  
 }
 ### 
-GET http://localhost:5000/products?page=0&limit=2
+GET http://localhost:5000/admin/products?_page=0&_limit=2
 Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiYyIsImlhdCI6MTYyNzMxNTc2NywiZXhwIjoxNjI3MzE1Nzk3fQ.niqOF26ZX7NVKSAIGrD49WRUr3kPJD7tkACMgO2NuQY
 ###
 POST http://localhost:5000/login
@@ -32,4 +32,30 @@ Content-Type: application/json
 {   
             "username":"Nhat",
             "password": "nhatpro"
+}
+###
+POST http://localhost:5000/create
+Content-Type: application/json
+
+{   
+            "username":"admin",
+            "password": "admin"
+}
+###
+POST http://localhost:5000/products/comment
+Content-Type: application/json
+
+{   
+            "_id":"61049f7bc9b45f1b342625b9",
+            "userId":"611e8c880a224207dcea4b7d",
+            "username": "Nhat",
+            "content": "ajshaaaaaaaaaaaaaaaaaadsd"
+}
+###
+POST http://localhost:5000/order
+Content-Type: application/json
+
+{   
+            "username":"nhat",
+            "password": "nhat"
 }

@@ -17,7 +17,7 @@ const schema = new mongoose.Schema({
     },
     favourite:{
         type:String,
-        required: true
+      
     },
     categori:{
         type:String,
@@ -26,6 +26,11 @@ const schema = new mongoose.Schema({
     description:{
         type:String,
         required: true
+    },
+    comments:{
+        type:Array,
+        default:[]
+    
     },
     provider:{
         type: String,
